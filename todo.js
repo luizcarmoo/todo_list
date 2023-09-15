@@ -1,4 +1,5 @@
 // Variables
+
 let todoItems = [];
 const todoInput = document.querySelector(".todo-input");
 const completedTodosDiv = document.querySelector(".completed-todos");
@@ -18,8 +19,7 @@ window.onload = () => {
 // Get the content typed into the input
 todoInput.onkeyup = (e) => {
   let value = e.target.value.replace(/^\s+/, "");
-  if (value && e.keyCode === 13) {
-    // Enter
+  if (value && e.keyCode === 13) { // Enter
     addTodo(value);
 
     todoInput.value = "";
@@ -30,9 +30,9 @@ todoInput.onkeyup = (e) => {
 // Add todo
 function addTodo(text) {
   todoItems.push({
-    id: Date.now(),
-    text,
-    completed: false,
+        id: Date.now(),
+        text,
+        completed: false
   });
 
   saveAndRender();
@@ -40,13 +40,13 @@ function addTodo(text) {
 
 // Remove todo
 function removeTodo(id) {
-  todoItems = todoItems.filter((todo) => todo.id !== Number(id));
+  todoItems = todoItems.filter(todo => todo.id !== Number(id));
   saveAndRender();
 }
 
 // Mark as completed
 function markAsCompleted(id) {
-  todoItems = todoItems.filter((todo) => {
+  todoItems = todoItems.filter(todo => {
     if (todo.id === Number(id)) {
       todo.completed = true;
     }
@@ -60,8 +60,8 @@ function markAsCompleted(id) {
 }
 
 // Mark as uncompleted
-function markAsUncompleted(id) {
-  todoItems = todoItems.filter((todo) => {
+function markAsUncompleted(id) { }
+  todoItems = todoItems.filter(todo => {
     if (todo.id === Number(id)) {
       todo.completed = false;
     }
@@ -70,7 +70,7 @@ function markAsUncompleted(id) {
   });
 
   saveAndRender();
-}
+
 
 // Save in localstorage
 function save() {
@@ -79,14 +79,14 @@ function save() {
 
 // Render
 function render() {
-  let unCompletedTodos = todoItems.filter((item) => !item.completed);
-  let completedTodos = todoItems.filter((item) => item.completed);
+  let unCompletedTodos = todoItems.filter(item => !item.completed);
+  let completedTodos = todoItems.filter(item => item.completed);
 
   completedTodosDiv.innerHTML = "";
   uncompletedTodosDiv.innerHTML = "";
 
   if (unCompletedTodos.length > 0) {
-    unCompletedTodos.forEach((todo) => {
+    unCompletedTodos.forEach(todo => {
       uncompletedTodosDiv.append(createTodoElement(todo));
     });
   } else {
@@ -96,7 +96,7 @@ function render() {
   if (completedTodos.length > 0) {
     completedTodosDiv.innerHTML = `<div class='completed-title'>Completed (${completedTodos.length} / ${todoItems.length})</div>`;
 
-    completedTodos.forEach((todo) => {
+    completedTodos.forEach(todo => {
       completedTodosDiv.append(createTodoElement(todo));
     });
   }
