@@ -65,6 +65,7 @@ body {
     justify-content: space-between;
     align-items: center;
     color: black;
+    text-transform: capitalize;
 }
 
 .todo-item span {
